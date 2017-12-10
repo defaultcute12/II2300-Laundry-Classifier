@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         //Get object representations of view items
         final ListView listview = (ListView) findViewById(R.id.listView_garments);
         final Button btnConfirmSelection = (Button) findViewById(R.id.btnConfirmSelection);
+        final TextView txtSuggestion = (TextView) findViewById(R.id.txtSuggestion);
 
         //Generate row views for each garment and load in parent listview
         //See
@@ -41,34 +43,51 @@ public class MainActivity extends AppCompatActivity {
         btnConfirmSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int numSelectedGarments = getNumberOfSelectedGarments();
-                Toast.makeText(getApplicationContext(), "Number of selected garments: " + numSelectedGarments, Toast.LENGTH_LONG).show();
+                //Load selected garment types into a Logic object
+                ArrayList<Garment> selectedGarments = getSelectedGarments();
+                Logic logic = new Logic(selectedGarments);
+                //Get suggested temperature and spinning limit for the mix from the Logic object
+                int suggestedTemperature = logic.getMinTemp();
+                int spinningLimitSuggestion = logic.getMinSpin();
+                //Get warnings based on the selected washing mix
+                ArrayList<String> warnings = logic.getWarnings();
+                //Build a suggestion string to display in a text view to the user
+                String suggestionString = generateSuggestionString(suggestedTemperature, spinningLimitSuggestion, warnings);
+                txtSuggestion.setText(suggestionString);
             }
         });
     }
 
     //Load dummy garment data into garment collection in memory
     private void loadGarments() {
-        garments.add(new Garment(1, "Don't know", 3, 22, 5555, 3, 333));
-        garments.add(new Garment(2, "Don't know", 5, 30, 55, 1, 99));
-        garments.add(new Garment(3, "Don't know", 2, 20, 43, 2, 12));
-        garments.add(new Garment(4, "Don't know", 1, 15, 78, 3, 134));
-        garments.add(new Garment(5, "Don't know", 6, 40, 54, 2, 367));
-        garments.add(new Garment(6, "Don't know", 6, 55, 33, 1, 100));
-        garments.add(new Garment(7, "Don't know", 9, 10, 28, 2, 233));
-        garments.add(new Garment(8, "Don't know", 7, 15, 43, 1, 212));
-        garments.add(new Garment(9, "Don't know", 1, 25, 61, 3, 432));
-        garments.add(new Garment(10, "Don't know", 5, 30, 22, 2, 222));
+        garments.add(new Garment(1, "Cotton", 3, 60, 1800, 3, 333));
+        garments.add(new Garment(2, "Denim", 5, 40, 900, 3, 99));
+        garments.add(new Garment(3, "Nylon", 2, 30, 1200, 2, 12));
+        garments.add(new Garment(4, "Silk", 1, 15, 300, 1, 134));
     }
 
-    //Dummy method to test effect of selecting/deselecting garments
-    private int getNumberOfSelectedGarments() {
+    //Get selected garments
+    private ArrayList<Garment> getSelectedGarments() {
         ArrayList<Garment> selectedGarments = new ArrayList<Garment>();
         for(Garment g : garments) {
             if(g.isIncludedInWash()) {
                 selectedGarments.add(g);
             }
         }
-        return selectedGarments.size();
+        return selectedGarments;
+    }
+
+    //Build and return a suggestion string suggesting
+    //a recommended maximum temperature and spinning limit and containing warnings.
+    private String generateSuggestionString(int temp, int spin, ArrayList<String> warnings) {
+        String suggestionString = "";
+        for(String w : warnings) {
+            suggestionString += w;
+        }
+        suggestionString += "\n";
+        suggestionString += "Suggested max temperature for mix: " + temp + "\n";
+        suggestionString += "Suggested spinning limit for mix: " + spin;
+
+        return suggestionString;
     }
 }

@@ -15,7 +15,7 @@ public class Logic {
     private ArrayList<Garment> finalGarments;
     private HashMap<String, Boolean> warnings;
 
-    public Logic(Set<Garment> garments) {
+    public Logic(ArrayList<Garment> garments) {
         //this.machine = new WashingMachine(machine);
         //this.proposition = new WashingMachine(machine);
         this.garments = new ArrayList<Garment>();
@@ -31,7 +31,19 @@ public class Logic {
         this.warnings.put("cycles", false);
     }
 
-    public HashMap<String, Boolean> getWarnings() {
+    //Return an ArrayList<String> containing warnings based on general
+    //principles.
+    public ArrayList<String> getWarnings() {
+        ArrayList<String> warnings = new ArrayList<String>();
+        for(Garment g : garments) {
+            //Should we generate a colour bleed warning?
+            //  "garments.size() > 1" is a dummy check while we only have 1 garment type
+            //  possible of generating this value. We do not want to show the warning when silk
+            //  is theonly type chosen.
+            if(g.getColourBleedResist() == 1 && garments.size() > 1) {
+                warnings.add(g.getGarmentClassName() + " has low colour bleed resistance, it should be washed separately.");
+            }
+        }
         return warnings;
     }
 
@@ -50,5 +62,29 @@ public class Logic {
     private Garment getMax(ArrayList<Garment> garments) {
         Garment gTmp = garments.get(0);
         return gTmp;
+    }
+
+    //Return the minimum "Maximum temperature" value
+    //for the garment types in the garments collection
+    public int getMinTemp() {
+        int minTemp = 10000;
+        for(Garment g : garments) {
+            if(g.getMaxWashTemp() < minTemp) {
+                minTemp = g.getMaxWashTemp();
+            }
+        }
+        return minTemp;
+    }
+
+    //Return the minimum "Maximum spinning limit" value
+    //for the garment types int the garments collection
+    public int getMinSpin() {
+        int minSpin = 10000;
+        for(Garment g : garments) {
+            if(g.getMaxWashTemp() < minSpin) {
+                minSpin = g.getSpinningLimit();
+            }
+        }
+        return minSpin;
     }
 }
