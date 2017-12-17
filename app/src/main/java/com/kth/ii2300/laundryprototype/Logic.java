@@ -87,4 +87,15 @@ public class Logic {
         }
         return minSpin;
     }
+
+    //Return minimum weight allowed from the selected garments
+    public int getMinWeight() {
+        int minWeight = 100;
+        for(Garment g: garments) {
+            if(g.getWeight() < minWeight) {
+                minWeight = g.getWeight();
+            }
+        }
+        return minWeight;
+    }
 }
