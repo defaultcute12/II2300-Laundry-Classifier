@@ -90,12 +90,23 @@ public class Logic {
 
     //Return minimum weight allowed from the selected garments
     public int getMinWeight() {
-        int minWeight = 100;
+        int minWeight = 10;
         for(Garment g: garments) {
             if(g.getWeight() < minWeight) {
                 minWeight = g.getWeight();
             }
         }
         return minWeight;
+    }
+
+    //Return minimum YarnTwistValue allowed from the selected garments
+    public int getMinYarnTwist() {
+        int minYarnTwist = 200;
+        for(Garment g: garments) {
+            if(g.getWeight() < minYarnTwist) {
+                minYarnTwist = g.getYarnTwist();
+            }
+        }
+        return minYarnTwist;
     }
 }

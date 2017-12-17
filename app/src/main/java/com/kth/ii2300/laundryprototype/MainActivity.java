@@ -50,10 +50,11 @@ public class MainActivity extends AppCompatActivity {
                 int suggestedTemperature = logic.getMinTemp();
                 int spinningLimitSuggestion = logic.getMinSpin();
                 int weightSuggestion = logic.getMinWeight();
+                int yarnTwistSuggestion = logic.getMinYarnTwist();
                 //Get warnings based on the selected washing mix
                 ArrayList<String> warnings = logic.getWarnings();
                 //Build a suggestion string to display in a text view to the user
-                String suggestionString = generateSuggestionString(suggestedTemperature, spinningLimitSuggestion, weightSuggestion, warnings);
+                String suggestionString = generateSuggestionString(suggestedTemperature, spinningLimitSuggestion, weightSuggestion, yarnTwistSuggestion, warnings);
                 txtSuggestion.setText(suggestionString);
             }
         });
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Build and return a suggestion string suggesting
     //a recommended maximum temperature and spinning limit and containing warnings.
-    private String generateSuggestionString(int temp, int spin, int weight, ArrayList<String> warnings) {
+    private String generateSuggestionString(int temp, int spin, int weight, int yarnTwist, ArrayList<String> warnings) {
         String suggestionString = "";
         for(String w : warnings) {
             suggestionString += w;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         suggestionString += "Suggested max temperature for mix: " + temp + "\n";
         suggestionString += "Suggested spinning limit for mix: " + spin+ "\n";
         suggestionString += "Suggested weight limit for mix: " + weight+ "\n";
+        suggestionString += "Suggested YarnTwist limit for mix: " + yarnTwist+ "\n";
 
         return suggestionString;
     }
