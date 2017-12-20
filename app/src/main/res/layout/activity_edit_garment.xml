@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.kth.ii2300.laundryprototype.EditGarmentActivity">
+
+    <EditText
+        android:id="@+id/edtNewClothingName"
+        android:hint="Clothing name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edtNewClothingWeight"
+        android:hint="Weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/edtNewClothingMaxTemp"
+        android:hint="Max washing temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/edtNewClothingSpinningLimit"
+        android:hint="Max spin cycles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/edtNewClothingYarnTwist"
+        android:hint="Yarn twist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"/>
+
+    <CheckBox
+        android:id="@+id/chkNewClothingColorBleed"
+        android:text="Color bleed sensitive?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@android:color/holo_green_light"
+        app:rippleColor="@android:color/darker_gray"
+        app:srcCompat="@android:drawable/ic_menu_add" />
+
+</LinearLayout>

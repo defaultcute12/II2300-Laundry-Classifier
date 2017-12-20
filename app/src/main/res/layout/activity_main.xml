@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context="com.kth.ii2300.laundryprototype.MainActivity">
 
+    <Button
+        android:id="@+id/btnAddOrEditGarment"
+        android:text="Add New clothing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"/>
+
     <ListView
         android:id="@+id/listView_garments"
         android:layout_width="match_parent"

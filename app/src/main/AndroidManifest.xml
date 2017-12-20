@@ -16,6 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".EditGarmentActivity"
+            android:label="@string/title_activity_edit_garment"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kth.ii2300.laundryprototype.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

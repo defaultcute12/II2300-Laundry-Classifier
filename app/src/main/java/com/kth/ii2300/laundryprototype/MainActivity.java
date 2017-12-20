@@ -1,5 +1,6 @@
 package com.kth.ii2300.laundryprototype;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         final ListView listview = (ListView) findViewById(R.id.listView_garments);
         final Button btnConfirmSelection = (Button) findViewById(R.id.btnConfirmSelection);
         final TextView txtSuggestion = (TextView) findViewById(R.id.txtSuggestion);
+        final Button btnAddOrEditGarment = (Button) findViewById(R.id.btnAddOrEditGarment);
 
         //Generate row views for each garment and load in parent listview
         //See
@@ -36,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
         final GarmentAdapter adapter = new GarmentAdapter(this,
                 R.layout.listitemlayout, garments);
         listview.setAdapter(adapter);
+
+        //Implement a listener for the add/edit clothing button
+        //Goes to the EditGarmentActivity
+        btnAddOrEditGarment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openEditGarmentActivity();
+            }
+        });
 
         //Implement a listener for the confirm button
         //Displays a temporary alert (a toast) notifying
@@ -93,5 +104,16 @@ public class MainActivity extends AppCompatActivity {
         suggestionString += "Suggested YarnTwist limit for mix: " + yarnTwist+ "\n";
 
         return suggestionString;
+    }
+
+    //Go to the EditGarmentActivity
+    private void openEditGarmentActivity() {
+        try {
+            Intent intent = new Intent(this, EditGarmentActivity.class);
+            startActivity(intent);
+        }
+        catch(Exception e) {
+            Toast.makeText(getApplicationContext(), "open editgarmentactivity exception: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }
