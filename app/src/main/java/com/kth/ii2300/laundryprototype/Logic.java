@@ -40,7 +40,7 @@ public class Logic {
             //  "garments.size() > 1" is a dummy check while we only have 1 garment type
             //  possible of generating this value. We do not want to show the warning when silk
             //  is theonly type chosen.
-            if(g.getColourBleedResist() == 1 && garments.size() > 1) {
+            if(g.isColorBleedSensitive() && garments.size() > 1) {
                 warnings.add(g.getGarmentClassName() + " has low colour bleed resistance, it should be washed separately.");
             }
         }

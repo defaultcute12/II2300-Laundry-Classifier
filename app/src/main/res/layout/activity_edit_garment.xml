@@ -11,50 +11,57 @@
         android:id="@+id/edtNewClothingName"
         android:hint="Clothing name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/edtNewClothingWeight"
         android:hint="Weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/edtNewClothingMaxTemp"
         android:hint="Max washing temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/edtNewClothingSpinningLimit"
         android:hint="Max spin cycles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/edtNewClothingYarnTwist"
         android:hint="Yarn twist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:imeOptions="actionNext"/>
 
     <CheckBox
         android:id="@+id/chkNewClothingColorBleed"
         android:text="Color bleed sensitive?"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:imeOptions="actionNext"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <Button
+        android:id="@+id/btnConfirmEditGarment"
+        android:text="Confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@android:color/holo_green_light"
-        app:rippleColor="@android:color/darker_gray"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        />
 
 </LinearLayout>

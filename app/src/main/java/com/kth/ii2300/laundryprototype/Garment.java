@@ -11,22 +11,22 @@ public class Garment {
     private int weight;
     private int maxWashTemp;
     private int spinningLimit;
-    private int colourBleedResist;
     private int yarnTwist;
+    private boolean isColorBleedSensitive;
 
     //Other Properties
     private boolean isIncludedInWash;
 
 
     public Garment(int rfidTagId, String garmentClassName, int weight,
-                   int maxWashTemp, int spinningLimit, int colourBleedResist,
-                   int yarnTwist) {
+                   int maxWashTemp, int spinningLimit, int yarnTwist,
+                   boolean iscolorBleedSensitive) {
         this.rfidTagId = rfidTagId;
         this.garmentClassName = garmentClassName;
         this.weight = weight;
         this.maxWashTemp = maxWashTemp;
         this.spinningLimit = spinningLimit;
-        this.colourBleedResist = colourBleedResist;
+        this.isColorBleedSensitive = iscolorBleedSensitive;
         this.yarnTwist = yarnTwist;
 
         this.isIncludedInWash = false;
@@ -52,26 +52,12 @@ public class Garment {
         return spinningLimit;
     }
 
-    public int getColourBleedResist() {
-        return colourBleedResist;
-    }
-
-    public String getColourBleedResistAsString() {
-        String resistanceValue = "";
-        switch(colourBleedResist) {
-            case 1: resistanceValue = "Low";
-                    break;
-            case 2: resistanceValue = "Medium";
-                    break;
-            case 3: resistanceValue = "High";
-                    break;
-            default: resistanceValue = "N/A";
-        }
-        return resistanceValue;
-    }
-
     public int getYarnTwist() {
         return yarnTwist;
+    }
+
+    public boolean isColorBleedSensitive() {
+        return isColorBleedSensitive;
     }
 
     public boolean isIncludedInWash() {
