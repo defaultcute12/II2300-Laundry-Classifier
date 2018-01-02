@@ -55,13 +55,36 @@
         android:layout_height="wrap_content"
         android:imeOptions="actionNext"/>
 
-    <Button
-        android:id="@+id/btnConfirmEditGarment"
-        android:text="Confirm"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="@dimen/fab_margin"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnConfirmEditGarment"
+            android:text="Confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            />
+
+        <Button
+            android:id="@+id/btnTakePhoto"
+            android:text="Take photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/thumbnailImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
         />
 
 </LinearLayout>

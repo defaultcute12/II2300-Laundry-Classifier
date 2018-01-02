@@ -17,6 +17,8 @@ public class Garment {
     //Other Properties
     private boolean isIncludedInWash;
 
+    public Garment() {};
+
 
     public Garment(int rfidTagId, String garmentClassName, int weight,
                    int maxWashTemp, int spinningLimit, int yarnTwist,
@@ -30,6 +32,34 @@ public class Garment {
         this.yarnTwist = yarnTwist;
 
         this.isIncludedInWash = false;
+    }
+
+    public void setRfidTagId(int rfidTagId) {
+        this.rfidTagId = rfidTagId;
+    }
+
+    public void setGarmentClassName(String garmentClassName) {
+        this.garmentClassName = garmentClassName;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setMaxWashTemp(int maxWashTemp) {
+        this.maxWashTemp = maxWashTemp;
+    }
+
+    public void setSpinningLimit(int spinningLimit) {
+        this.spinningLimit = spinningLimit;
+    }
+
+    public void setYarnTwist(int yarnTwist) {
+        this.yarnTwist = yarnTwist;
+    }
+
+    public void setColorBleedSensitive(Boolean isColorBleedSensitive) {
+        this.isColorBleedSensitive = isColorBleedSensitive;
     }
 
     public int getRfidTagId() {

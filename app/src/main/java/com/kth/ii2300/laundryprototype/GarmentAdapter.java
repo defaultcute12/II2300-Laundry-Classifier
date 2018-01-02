@@ -2,12 +2,15 @@ package com.kth.ii2300.laundryprototype;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -46,6 +49,7 @@ public class GarmentAdapter extends ArrayAdapter {
             holder = new GarmentHolder();
             holder.txtGarmentClassName = (TextView)row.findViewById(R.id.garmentLabel);
             holder.chkIsIncluded = (CheckBox)row.findViewById(R.id.garmentCheckBox);
+            holder.edtButton = (Button)row.findViewById((R.id.garmentEditbtn));
 
             row.setTag(holder);
         } else {
@@ -68,11 +72,36 @@ public class GarmentAdapter extends ArrayAdapter {
             }
         });
 
+        //Implement a listener for the editbutton which
+        //opens the editGarment activity with values for this specific garment
+        holder.edtButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openEditGarmentActivity(garments.get(position));
+            }
+        });
+
         return row;
     }
 
     static class GarmentHolder {
         TextView txtGarmentClassName;
         CheckBox chkIsIncluded;
+        Button edtButton;
+    }
+
+    //Open the editGarment activity in "edit" mode
+    //by sending an intent with editstate "edit" and
+    //garmentName "name"
+    private void openEditGarmentActivity(Garment garment) {
+        try {
+            Intent intent = new Intent(this.context, EditGarmentActivity.class);
+            intent.putExtra("editstate", "edit");
+            intent.putExtra("garmentName", garment.getGarmentClassName());
+            this.context.startActivity(intent);
+        }
+        catch(Exception e) {
+            Toast.makeText(this.context.getApplicationContext(), "open editgarmentactivity exception: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }
